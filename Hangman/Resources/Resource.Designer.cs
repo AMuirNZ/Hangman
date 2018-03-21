@@ -45,10 +45,13 @@ namespace Hangman
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int mv = 2130837504;
+			public const int Dead = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int title = 2130837505;
+			public const int mv = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int title = 2130837506;
 			
 			static Drawable()
 			{
@@ -105,8 +108,8 @@ namespace Hangman
 			// aapt resource value: 0x7f05000e
 			public const int btnN = 2131034126;
 			
-			// aapt resource value: 0x7f05001d
-			public const int btnNext = 2131034141;
+			// aapt resource value: 0x7f05001f
+			public const int btnNext = 2131034143;
 			
 			// aapt resource value: 0x7f05000f
 			public const int btnO = 2131034127;
@@ -144,14 +147,20 @@ namespace Hangman
 			// aapt resource value: 0x7f05001a
 			public const int btnZ = 2131034138;
 			
-			// aapt resource value: 0x7f05001c
-			public const int etEnterName = 2131034140;
+			// aapt resource value: 0x7f05001e
+			public const int etEnterName = 2131034142;
 			
-			// aapt resource value: 0x7f05001b
-			public const int imageView1 = 2131034139;
+			// aapt resource value: 0x7f05001d
+			public const int imageView1 = 2131034141;
 			
 			// aapt resource value: 0x7f050000
 			public const int linearLayout1 = 2131034112;
+			
+			// aapt resource value: 0x7f05001c
+			public const int txtGuesses = 2131034140;
+			
+			// aapt resource value: 0x7f05001b
+			public const int txtWord = 2131034139;
 			
 			static Id()
 			{
@@ -167,10 +176,13 @@ namespace Hangman
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Game = 2130903040;
+			public const int Dead = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
+			public const int Game = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int Main = 2130903042;
 			
 			static Layout()
 			{
