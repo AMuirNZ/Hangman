@@ -159,10 +159,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtWord" />
-  <TextView
-    android:text="Medium Text"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/txtGuesses" />
+    <TextView
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtGuesses" />
+    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/ivHangman"
+        android:layout_weight="50" />
 </LinearLayout>

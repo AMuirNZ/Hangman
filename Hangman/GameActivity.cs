@@ -49,17 +49,19 @@ namespace Hangman
         private char[] WordGuess2;
         private int wrongGuesses;
         private int rightGuesses;
-
+        int letters = 0;
+        private ImageView GamePic;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
-
+            
 
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Game);
+          
             StartUp();
         }
 
@@ -93,7 +95,7 @@ namespace Hangman
             Z = FindViewById<Button>(Resource.Id.btnZ);
             WordLine = FindViewById<TextView>(Resource.Id.txtWord);
             Guess = FindViewById<TextView>(Resource.Id.txtGuesses);
-
+            GamePic = FindViewById<ImageView>(Resource.Id.ivHangman);
             WordGuess();
             wrongGuesses = 0;
             rightGuesses = 0;
@@ -129,14 +131,18 @@ namespace Hangman
 
         private void WordGuess()
         {
+            GamePic.SetImageResource(Resource.Drawable.Blue);
+
             Random random = new Random(DateTime.Now.Millisecond);
             //int Rnd = random.Next(1, 4);
 
-            string[] wordBank = { "Abolishment", "Cat", "Blacksmith", "Merino" };
+            string[] wordBank = { "Abolishment", "Cat", "Blacksmith", "Merino", "Banana" };
 
             Word = wordBank[random.Next(0, wordBank.Length)];
 
-            FindViewById<TextView>(Resource.Id.txtWord).Text = Word;
+            
+
+            //FindViewById<TextView>(Resource.Id.txtWord).Text = Word;
 
             char[] WordArray = new char[Word.Length];
             
@@ -147,9 +153,10 @@ namespace Hangman
             foreach  (char letter in WordArray)
             {
                 copycurrentword += "_";
-
+                letters++;
             }
-            
+
+            //Toast.MakeText(this, letters.ToString(), ToastLength.Long).Show();
 
             WordGuessArray = copycurrentword.ToArray();
 
@@ -198,6 +205,8 @@ namespace Hangman
             {
                 Toast.MakeText(this, letter + " is in the word", ToastLength.Long).Show();
                 rightGuesses++;
+                letters = letters - 1;
+
 
 
             }
@@ -205,8 +214,7 @@ namespace Hangman
             {
                 Toast.MakeText(this, letter + " is not in the word", ToastLength.Long).Show();
                 wrongGuesses++;
-
-
+                
 
             }
 
@@ -225,16 +233,32 @@ namespace Hangman
 
             FindViewById<TextView>(Resource.Id.txtGuesses).Text = new string(WordGuess2);
 
+
+
+
+
             if (wrongGuesses == 5)
             {
                 //var DeadActivity = new Intent(this, typeof(DeadActivity));
                 //StartActivity(DeadActivity);
-
+                GamePic.SetImageResource(Resource.Drawable.Yellow);
                 Toast.MakeText(this, "DEAD!", ToastLength.Long).Show();
                 rightGuesses++;
+                var mainActivity = new Intent(this, typeof(MainActivity));
+                
+
+                //run the inent and start the other screen passing over the data
+                StartActivity(mainActivity);
             }
 
 
         }
+
+        private void changeImage()
+        {
+            
+        }
     }
 }
+
+
