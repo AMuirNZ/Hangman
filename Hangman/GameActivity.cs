@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -211,7 +210,7 @@ namespace Hangman
 
                 foreach (char letter in WordArray)
                 {
-                    copycurrentword += " _";
+                    copycurrentword += " _ ";
                     letters++;
                 }
 
@@ -337,98 +336,7 @@ namespace Hangman
 
             }
 
-            //    private void LoadWords()
-            //    {
-
-            //        var assets = Assets;
-
-            //        using (var sr = new StreamReader(assets.Open("hangmanwords.txt")))
-            //        {
-            //            while (!sr.EndOfStream)
-            //            {
-            //                var text = sr.ReadLine();
-
-
-            //                if (text != string.Empty && text.Length > 4) //ignore empty lines or words less than 4 letters
-            //                {
-            //                    text = text.Trim();
-
-
-
-            //                    var word = text;
-
-            //                    word = word.Trim();
-
-            //                    //cut out the stuff you don't want
-
-            //                    if (!WordList.Contains(word))
-            //                    {
-
-            //                        WordList.Add(word);
-            //                    }
-            //                }
-
-
-            //            }
-
-            //            Random rand = new Random();
-
-
-            //            int RndNumber = rand.Next(1, WordList.Count);
-
-
-            //            TheWord = WordList[RndNumber];
-
-
-
-            //            char[] WordArray = new char[TheWord.Length];
-
-
-
-
-            //            WordArray = TheWord.ToArray();
-
-            //            Wordz = WordArray;
-
-
-
-            //            char[] WordGuessArray;
-
-
-
-            //            foreach (char letter in Wordz)
-
-            //            {
-            //                copycurrentword += "_";
-            //            }
-
-            //            //Toast.MakeText(this, , ToastLength.Long).Show();
-
-            //            WordGuessArray = copycurrentword.ToArray();
-
-            //            WordGuess2 = WordGuessArray;
-
-            //            WordToGuess();
-
-            //        }
-
-
-            //    }
-
-
-            //    private void WordToGuess()
-
-            //    {
-            //       WordLine.Text = new string(WordGuess2);
-            //        Toast.MakeText(this, Word, ToastLength.Long).Show();
-
-            //    }
-
-
-
-
-
-            //}
+            
 
 
         }

@@ -158,12 +158,14 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="45px"
         android:id="@+id/txtWord" />
     <TextView
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="45px"
         android:id="@+id/txtGuesses" />
     <ImageView
         android:src="@android:drawable/ic_menu_gallery"

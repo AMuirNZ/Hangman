@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Views;
 using System;
 using Android.Content;
+using Android.Media;
 
 namespace Hangman
 {
@@ -13,13 +14,16 @@ namespace Hangman
     {
         private Button btnNext;
         private TextView txtName;
+        private int Music = 0;
 
-
+        MediaPlayer _player;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
+            
+            
 
 
 
@@ -40,16 +44,30 @@ namespace Hangman
 
         private void onNext_Click(object sender, EventArgs e)
         {
-            //Create an intent to move data to the other activity
-            //Toast.MakeText(this, "Hi", ToastLength.Long).Show();
+            if (Music == 0)
+            {
+                _player = MediaPlayer.Create(this, Resource.Raw.Theme);
+                _player.Start();
+                Music = 1;
+            }
+            else
+            {
+                _player.Stop();
+                Music = 0;
+            }
+            ////Create an intent to move data to the other activity
+            ////Toast.MakeText(this, "Hi", ToastLength.Long).Show();
 
-            var gameActivity = new Intent(this, typeof(GameActivity));
-            gameActivity.PutExtra("Name", txtName.Text);
+            //var gameActivity = new Intent(this, typeof(GameActivity));
+            //gameActivity.PutExtra("Name", txtName.Text);
 
-            //run the inent and start the other screen passing over the data
-            StartActivity(gameActivity);
+            ////run the inent and start the other screen passing over the data
+            //StartActivity(gameActivity);
 
         }
+
+
+        
     }
 }
 
