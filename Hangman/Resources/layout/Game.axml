@@ -154,14 +154,14 @@
             android:id="@+id/btnZ" />
     </LinearLayout>
     <TextView
-        android:text="Medium Text"
+        android:text=" "
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="45px"
         android:id="@+id/txtWord" />
     <TextView
-        android:text="Medium Text"
+        android:text="Bye"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

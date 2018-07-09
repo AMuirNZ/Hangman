@@ -46,22 +46,22 @@ namespace Hangman
         private Button Z;
         private TextView WordLine;
         private TextView Guess;
-        String Word;
-        private char[] WordArrays;
-        private char[] underscore;
-        private char[] WordGuess2;
-        private int wrongGuesses;
-        private int rightGuesses;
-        int letters = 0;
         private ImageView GamePic;
-        public string TheWord;
+        //private int wrongGuesses;
 
-        public char[] Wordz;
+        //String Word;
+        //private char[] WordArrays;       
+        //private char[] WordGuess2;        
+        //private int rightGuesses;
+        //int letters = 0;
+        //private ImageView GamePic;
+        //public string TheWord;
+        //public char[] Wordz;
 
-        //public  char[] WordGuess;
-        public string wordguess2;
 
-        string copycurrentword = "";
+        //public string wordguess2;
+
+        //string copycurrentword = "";
 
 
         List<string> WordList = new List<string>();
@@ -70,7 +70,7 @@ namespace Hangman
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
-
+            myClass.letters = 0;
 
 
             // Set our view from the "main" layout resource
@@ -108,12 +108,12 @@ namespace Hangman
             X = FindViewById<Button>(Resource.Id.btnX);
             Y = FindViewById<Button>(Resource.Id.btnY);
             Z = FindViewById<Button>(Resource.Id.btnZ);
-            WordLine = FindViewById<TextView>(Resource.Id.txtWord);
+            
             Guess = FindViewById<TextView>(Resource.Id.txtGuesses);
             GamePic = FindViewById<ImageView>(Resource.Id.ivHangman);
             WordGuess();
-            wrongGuesses = 0;
-            rightGuesses = 0;
+            myClass.wrongGuesses = 0;
+            myClass.rightGuesses = 0;
 
 
             A.Click += HangmanLetter;
@@ -148,7 +148,9 @@ namespace Hangman
 
         private void WordGuess()
         {
-            GamePic.SetImageResource(Resource.Drawable.Blue);
+            GamePic.SetImageResource(Resource.Drawable.Hangman7);
+
+            //Provide words from string
 
             //Random random = new Random(DateTime.Now.Millisecond);
             //int Rnd = random.Next(1, 4);
@@ -195,152 +197,177 @@ namespace Hangman
             Random rand = new Random();
 
 
-                int RndNumber = rand.Next(1, WordList.Count);
+            int RndNumber = rand.Next(1, WordList.Count);
 
 
-                Word = WordList[RndNumber];
-            Toast.MakeText(this, Word, ToastLength.Long).Show();
+            myClass.Word = WordList[RndNumber];
+            Toast.MakeText(this, myClass.Word, ToastLength.Long).Show();
             //FindViewById<TextView>(Resource.Id.txtWord).Text = Word;
 
-            char[] WordArray = new char[Word.Length];
+            char[] WordArray = new char[myClass.Word.Length];
 
-                char[] WordGuessArray;
+            char[] WordGuessArray;
 
-                string copycurrentword = "";
+            string copycurrentword = "";
 
-                foreach (char letter in WordArray)
-                {
-                    copycurrentword += "*";
-                    letters++;
-                }
+            foreach (char letter in WordArray)
+            {
+                copycurrentword += "*";
+                myClass.letters++;
+            }
 
+
+
+            WordGuessArray = copycurrentword.ToArray();
+
+            myClass.WordGuess2 = WordGuessArray;
+
+
+
+            FindViewById<TextView>(Resource.Id.txtGuesses).Text = new string(myClass.WordGuess2);
+        }
+
+        private void HangmanLetter(object sender, EventArgs e)
+        {
+            //make a fake button
+
+            Button fakeBtn = (Button)sender;
+
+
+            if (fakeBtn.Clickable)
+
+            {
+                fakeBtn.Enabled = false;
+
+            }
+
+            char letter = Convert.ToChar(fakeBtn.Text);
+            LetterSorting(letter);
+
+
+        }
+
+        private void LetterSorting(char letter)
+        {
+
+
+
+            char[] WordArray = new char[myClass.Word.Length];
+            myClass.WordArrays = WordArray;
+
+
+
+            string WordUC = myClass.Word.ToUpper();
+
+
+
+            if (WordUC.Contains(letter))
+            {
+                Toast.MakeText(this, letter + " is in the word", ToastLength.Long).Show();
+                myClass.rightGuesses++;
                 
 
-                WordGuessArray = copycurrentword.ToArray();
-
-                WordGuess2 = WordGuessArray;
 
 
-
-                FindViewById<TextView>(Resource.Id.txtGuesses).Text = new string(WordGuess2);
             }
-
-            private void HangmanLetter(object sender, EventArgs e)
+            else
             {
-                //make a fake button
-
-                Button fakeBtn = (Button) sender;
-
-
-                if (fakeBtn.Clickable)
-
-                {
-                    fakeBtn.Enabled = false;
-
-                }
-
-                char letter = Convert.ToChar(fakeBtn.Text);
-                LetterSorting(letter);
+                Toast.MakeText(this, letter + " is not in the word", ToastLength.Long).Show();
+                myClass.wrongGuesses++;
 
 
             }
 
-            private void LetterSorting(char letter)
+
+
+
+            for (int i = 0; i < myClass.WordArrays.Length; i++)
             {
 
 
-
-                char[] WordArray = new char[Word.Length];
-                WordArrays = WordArray;
-
-
-
-                string WordUC = Word.ToUpper();
-
-
-
-                if (WordUC.Contains(letter))
+                if (WordUC[i] == letter)
                 {
-                    Toast.MakeText(this, letter + " is in the word", ToastLength.Long).Show();
-                    rightGuesses++;
-                    letters = letters - 1;
+                    myClass.WordGuess2[i] = letter;
+                    //myClass.letters++;
+                    myClass.letters = myClass.letters - 1;
 
 
 
                 }
-                else
-                {
-                    Toast.MakeText(this, letter + " is not in the word", ToastLength.Long).Show();
-                    wrongGuesses++;
+            }
 
-
-                }
+            //Toast.MakeText(this, myClass.letters.ToString(), ToastLength.Long).Show();
 
 
 
-
-                for (int i = 0; i < WordArrays.Length; i++)
-                {
+            FindViewById<TextView>(Resource.Id.txtGuesses).Text = new string(myClass.WordGuess2);
 
 
-                    if (WordUC[i] == letter)
-                    {
-                        WordGuess2[i] = letter;
-                    }
-                }
+            //if (myClass.rightGuesses == myClass.letters )
+            if (myClass.letters == 0)
+            {
 
-                FindViewById<TextView>(Resource.Id.txtGuesses).Text = new string(WordGuess2);
-
-
-            
+                Toast.MakeText(this, "Correct!", ToastLength.Long).Show();
+                Toast.MakeText(this, myClass.Word, ToastLength.Long).Show();
+                myClass.rightGuesses++;
+                var mainActivity = new Intent(this, typeof(MainActivity));
 
 
-            if (wrongGuesses >= 5)
+                //run the inent and start the other screen passing over the data
+                StartActivity(mainActivity);
+            }
+
+
+            if (myClass.wrongGuesses >= 6)
                 {
                     //var DeadActivity = new Intent(this, typeof(DeadActivity));
                     //StartActivity(DeadActivity);
-                    GamePic.SetImageResource(Resource.Drawable.Red);
+                    GamePic.SetImageResource(Resource.Drawable.Hangman1);
                     Toast.MakeText(this, "DEAD!", ToastLength.Long).Show();
-                    Toast.MakeText(this, Word, ToastLength.Long).Show();
-                rightGuesses++;
+                    Toast.MakeText(this, myClass.Word, ToastLength.Long).Show();
+                    myClass.rightGuesses++;
                     var mainActivity = new Intent(this, typeof(MainActivity));
 
 
                     //run the inent and start the other screen passing over the data
                     StartActivity(mainActivity);
                 }
-                else if (wrongGuesses == 4)
-                {
-                    GamePic.SetImageResource(Resource.Drawable.Blue);
-                }
-                else if (wrongGuesses == 3)
-                {
-                    GamePic.SetImageResource(Resource.Drawable.Pink);
-                }
-                else if (wrongGuesses == 2)
-                {
-                    GamePic.SetImageResource(Resource.Drawable.Yellow);
-                }
-                else if (wrongGuesses == 1)
-                {
-                    GamePic.SetImageResource(Resource.Drawable.Red);
-                }
-                else
-                {
-                    GamePic.SetImageResource(Resource.Drawable.Yellow);
-                }
-            }
-
-            private void changeImage()
+          
+            else if (myClass.wrongGuesses == 5)
             {
-
+                GamePic.SetImageResource(Resource.Drawable.Hangman2);
+            }
+            else if (myClass.wrongGuesses == 4)
+            {
+                GamePic.SetImageResource(Resource.Drawable.Hangman3);
+            }
+            else if (myClass.wrongGuesses == 3)
+                {
+                    GamePic.SetImageResource(Resource.Drawable.Hangman4);
+                }
+                else if (myClass.wrongGuesses == 2)
+                {
+                    GamePic.SetImageResource(Resource.Drawable.Hangman5);
+                }
+                else if (myClass.wrongGuesses == 1)
+            {
+                    GamePic.SetImageResource(Resource.Drawable.Hangman6);
+                }
+            else
+            {
+                GamePic.SetImageResource(Resource.Drawable.Hangman7);
+            }
+                
             }
 
-            
+
+
+
 
 
         }
-    }
+    
+}
 
 
 

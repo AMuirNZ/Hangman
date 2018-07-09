@@ -54,19 +54,40 @@ namespace Hangman
 			public const int Dead = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int mv = 2130837507;
+			public const int Hangman1 = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int Pink = 2130837508;
+			public const int Hangman2 = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int Red = 2130837509;
+			public const int Hangman3 = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int title = 2130837510;
+			public const int Hangman4 = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int Yellow = 2130837511;
+			public const int Hangman5 = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public const int Hangman6 = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int Hangman7 = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int mv = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int Pink = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int Red = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int title = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public const int Yellow = 2130837518;
 			
 			static Drawable()
 			{

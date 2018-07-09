@@ -15,16 +15,18 @@ namespace Hangman
     class Class
     {
 
-
-       
-        public static char[] Word { get; set; }
-
-        public static string word { get; set; }
-
+        public int wrongGuesses { get; set; }
+        public String Word { get; set; }
+        public char[] WordArrays { get; set; }
+        public char[] WordGuess2 { get; set; }
+        public int rightGuesses { get; set; }
+        public int letters { get; set; }
+      
+        public string TheWord { get; set; }
+        public char[] Wordz { get; set; }
         
 
-        public int Level { get; set; }
+        public string wordguess2 { get; set; }
 
-        public static string TheWord { get; set; }
     }
 }
