@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace Hangman
 {
-    [Activity(Label = "Hangman")]
+    [Activity(Label = "Hangman", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class GameActivity : Activity
     {
         Class myClass = new Class();
@@ -199,7 +199,7 @@ namespace Hangman
 
 
                 Word = WordList[RndNumber];
-            //Toast.MakeText(this, Word, ToastLength.Long).Show();
+            Toast.MakeText(this, Word, ToastLength.Long).Show();
             //FindViewById<TextView>(Resource.Id.txtWord).Text = Word;
 
             char[] WordArray = new char[Word.Length];
@@ -210,7 +210,7 @@ namespace Hangman
 
                 foreach (char letter in WordArray)
                 {
-                    copycurrentword += " _ ";
+                    copycurrentword += "*";
                     letters++;
                 }
 
@@ -292,10 +292,10 @@ namespace Hangman
                 FindViewById<TextView>(Resource.Id.txtGuesses).Text = new string(WordGuess2);
 
 
+            
 
 
-
-                if (wrongGuesses >= 5)
+            if (wrongGuesses >= 5)
                 {
                     //var DeadActivity = new Intent(this, typeof(DeadActivity));
                     //StartActivity(DeadActivity);

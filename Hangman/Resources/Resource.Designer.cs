@@ -48,22 +48,25 @@ namespace Hangman
 			public const int Blue = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int Dead = 2130837505;
+			public const int CS = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int mv = 2130837506;
+			public const int Dead = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int Pink = 2130837507;
+			public const int mv = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int Red = 2130837508;
+			public const int Pink = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int title = 2130837509;
+			public const int Red = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int Yellow = 2130837510;
+			public const int title = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int Yellow = 2130837511;
 			
 			static Drawable()
 			{
@@ -117,11 +120,14 @@ namespace Hangman
 			// aapt resource value: 0x7f06000d
 			public const int btnM = 2131099661;
 			
+			// aapt resource value: 0x7f060020
+			public const int btnMusic = 2131099680;
+			
 			// aapt resource value: 0x7f06000e
 			public const int btnN = 2131099662;
 			
-			// aapt resource value: 0x7f060020
-			public const int btnNext = 2131099680;
+			// aapt resource value: 0x7f06001f
+			public const int btnNext = 2131099679;
 			
 			// aapt resource value: 0x7f06000f
 			public const int btnO = 2131099663;
@@ -159,11 +165,8 @@ namespace Hangman
 			// aapt resource value: 0x7f06001a
 			public const int btnZ = 2131099674;
 			
-			// aapt resource value: 0x7f06001f
-			public const int etEnterName = 2131099679;
-			
 			// aapt resource value: 0x7f06001e
-			public const int imageView1 = 2131099678;
+			public const int etEnterName = 2131099678;
 			
 			// aapt resource value: 0x7f06001d
 			public const int ivHangman = 2131099677;
