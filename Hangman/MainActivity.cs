@@ -10,12 +10,24 @@ namespace Hangman
 {
     [Activity(Label = "Hangman", MainLauncher = true, Icon =
         "@drawable/CS", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
+
+
     public class MainActivity : Activity
+
+        
     {
-        private Button btnNext;
+        
+
+        private Button btnEasy;
+        private Button btnMedium;
+        private Button btnHard;
         private Button btnMusic;
-        private TextView txtName;
-        private int Music = 0;
+       
+        
+       
+            
+
+      
 
         MediaPlayer _player;
 
@@ -24,7 +36,13 @@ namespace Hangman
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
             
-            
+
+
+
+            Toast.MakeText(this, "Games " + Player.Games.ToString(), ToastLength.Long).Show();
+            Toast.MakeText(this, "Won " + Player.Won.ToString(), ToastLength.Long).Show();
+            Toast.MakeText(this, "Lost " + Player.Lost.ToString(), ToastLength.Long).Show();
+
 
 
 
@@ -36,61 +54,76 @@ namespace Hangman
 
         private void StartUp()
         {
-            txtName = FindViewById<TextView>(Resource.Id.etEnterName);
-            btnNext = FindViewById<Button>(Resource.Id.btnNext);
+         
+            btnEasy = FindViewById<Button>(Resource.Id.btnEasy);
+            btnMedium = FindViewById<Button>(Resource.Id.btnMedium);
+            btnHard = FindViewById<Button>(Resource.Id.btnHard);
             btnMusic = FindViewById<Button>(Resource.Id.btnMusic);
 
-            btnNext.Click += onNext_Click;
+            btnEasy.Click += onEasy_Click;
+            btnMedium.Click += onMedium_Click;
+            btnHard.Click += onHard_Click;
+
             btnMusic.Click += onMusic_Click;
 
         }
 
-        private void onNext_Click(object sender, EventArgs e)
+        private void onEasy_Click(object sender, EventArgs e)
         {
-            //if (Music == 0)
-            //{
-            //    _player = MediaPlayer.Create(this, Resource.Raw.Theme);
-            //    _player.Start();
-            //    Music = 1;
-            //}
-            //else
-            //{
-            //    _player.Stop();
-            //    Music = 0;
-            //}
-            //Create an intent to move data to the other activity
-            //Toast.MakeText(this, "Hi", ToastLength.Long).Show();
 
+            Player.Difficulty = 1;
+            Start();
+            
+
+
+
+        }
+
+        private void onMedium_Click(object sender, EventArgs e)
+        {
+
+            Player.Difficulty = 2;
+            Start();
+
+
+
+
+        }
+
+        private void onHard_Click(object sender, EventArgs e)
+        {
+
+            Player.Difficulty = 3;
+            Start();
+
+
+
+
+        }
+
+        private void Start()
+        {
             var gameActivity = new Intent(this, typeof(GameActivity));
-            gameActivity.PutExtra("Name", txtName.Text);
+           
 
             //run the inent and start the other screen passing over the data
             StartActivity(gameActivity);
-
         }
 
         private void onMusic_Click(object sender, EventArgs e)
         {
-            if (Music == 0)
+            if (Player.Music == false)
             {
                 _player = MediaPlayer.Create(this, Resource.Raw.Theme);
                 _player.Start();
-                Music = 1;
+                Player.Music = true;
             }
             else
             {
                 _player.Stop();
-                Music = 0;
+                Player.Music = false;
             }
-            //Create an intent to move data to the other activity
-            //Toast.MakeText(this, "Hi", ToastLength.Long).Show();
-
-            //var gameActivity = new Intent(this, typeof(GameActivity));
-            //gameActivity.PutExtra("Name", txtName.Text);
-
-            ////run the inent and start the other screen passing over the data
-            //StartActivity(gameActivity);
-
+            
         }
 
 

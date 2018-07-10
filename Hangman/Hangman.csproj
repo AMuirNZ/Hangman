@@ -54,7 +54,7 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="DeadActivity.cs" />
     <Compile Include="GameActivity.cs" />
     <Compile Include="MainActivity.cs" />
