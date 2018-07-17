@@ -58,11 +58,6 @@ namespace Hangman
             base.OnCreate(savedInstanceState);
             Player.letters = 0;
 
-
-          
-           
-
-
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Game);
 
@@ -154,9 +149,6 @@ namespace Hangman
             //Toast.MakeText(this, Word, ToastLength.Long).Show();
             //Word = wordBank[random.Next(0, wordBank.Length)];
        
-
-           
-
             int Low;
             int High;
 
@@ -291,23 +283,15 @@ namespace Hangman
             {
                 Toast.MakeText(this, letter + " is in the word", ToastLength.Long).Show();
                 Player.rightGuesses++;
-                
-
-
-
             }
             else
             //If guess is incorrect
             {
                 Toast.MakeText(this, letter + " is not in the word", ToastLength.Long).Show();
                 Player.wrongGuesses++;
-
-
             }
 
-
-
-
+            
             for (int i = 0; i < Player.WordArrays.Length; i++)
             {
 
@@ -315,11 +299,7 @@ namespace Hangman
                 if (WordUC[i] == letter)
                 {
                     Player.WordGuess2[i] = letter;
-                    //myClass.letters++;
                     Player.letters = Player.letters - 1;
-
-
-
                 }
             }
 
