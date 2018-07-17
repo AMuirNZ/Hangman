@@ -35,15 +35,12 @@ namespace Hangman
         {
             RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
-            
 
 
-
+            //Display how many Gmaes have been played, and how many have been won and lost. 
             Toast.MakeText(this, "Games " + Player.Games.ToString(), ToastLength.Long).Show();
             Toast.MakeText(this, "Won " + Player.Won.ToString(), ToastLength.Long).Show();
             Toast.MakeText(this, "Lost " + Player.Lost.ToString(), ToastLength.Long).Show();
-
-
 
 
             // Set our view from the "main" layout resource
@@ -54,7 +51,7 @@ namespace Hangman
 
         private void StartUp()
         {
-         
+            //Define buttons
             btnEasy = FindViewById<Button>(Resource.Id.btnEasy);
             btnMedium = FindViewById<Button>(Resource.Id.btnMedium);
             btnHard = FindViewById<Button>(Resource.Id.btnHard);

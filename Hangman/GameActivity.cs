@@ -17,7 +17,7 @@ namespace Hangman
     public class GameActivity : Activity
     {
         
-
+        //Assign all Buttons, TextViews and ImageViews
         private Button A;
         private Button B;
         private Button C;
@@ -44,24 +44,10 @@ namespace Hangman
         private Button X;
         private Button Y;
         private Button Z;
-        private TextView WordLine;
-        private TextView Guess;
+        //private TextView WordLine;
+     
         private ImageView GamePic;
-        //private int wrongGuesses;
-
-        //String Word;
-        //private char[] WordArrays;       
-        //private char[] WordGuess2;        
-        //private int rightGuesses;
-        //int letters = 0;
-        //private ImageView GamePic;
-        //public string TheWord;
-        //public char[] Wordz;
-
-
-        //public string wordguess2;
-
-        //string copycurrentword = "";
+       
 
 
         List<string> WordList = new List<string>();
@@ -73,7 +59,7 @@ namespace Hangman
             Player.letters = 0;
 
 
-            string Lost = Player.Lost.ToString();
+          
            
 
 
@@ -113,7 +99,8 @@ namespace Hangman
             Y = FindViewById<Button>(Resource.Id.btnY);
             Z = FindViewById<Button>(Resource.Id.btnZ);
             
-            Guess = FindViewById<TextView>(Resource.Id.txtGuesses);
+
+
             GamePic = FindViewById<ImageView>(Resource.Id.ivHangman);
             WordGuess();
             Player.wrongGuesses = 0;
@@ -153,6 +140,8 @@ namespace Hangman
 
         private void WordGuess()
         {
+
+            //Set initial background image2
             GamePic.SetImageResource(Resource.Drawable.Hangman7);
             
             //Provide words from string
@@ -161,14 +150,18 @@ namespace Hangman
             //int Rnd = random.Next(1, 4);
 
             //string[] wordBank = { "Abolishment", "Cat", "Blacksmith", "Merino", "Banana" };
-            //string[] wordBank = { "Heather" };
+            
             //Toast.MakeText(this, Word, ToastLength.Long).Show();
             //Word = wordBank[random.Next(0, wordBank.Length)];
-            //LoadWords();
+       
+
+           
 
             int Low;
             int High;
 
+
+            //Sort the lows and highs for each difficulty. Note that Easy, Medium & Hard have been changed to Short, Medium & Long due to some controversy.
             if (Player.Difficulty == 1)
             {
                 Low = 2;
@@ -189,6 +182,7 @@ namespace Hangman
 
             var assets = Assets;
 
+            //Pick a word from the 
             using (var sr = new StreamReader(assets.Open("hangmanwords.txt")))
             {
                 while (!sr.EndOfStream)
@@ -221,14 +215,14 @@ namespace Hangman
 
             Random rand = new Random();
 
-
+            //Picks a random number 
             int RndNumber = rand.Next(1, WordList.Count);
-
-
+            
+            //Picks a random word from the Wordlist
             Player.Word = WordList[RndNumber];
 
-            //Activate line below for cheat mode
-            //Toast.MakeText(this, Player.Word, ToastLength.Long).Show();
+            //Uncomment line below for cheat mode
+            Toast.MakeText(this, Player.Word, ToastLength.Long).Show();
 
 
             //FindViewById<TextView>(Resource.Id.txtWord).Text = Word;
@@ -239,6 +233,8 @@ namespace Hangman
 
             string copycurrentword = "";
 
+
+            //Assigns a * to every letter in the word
             foreach (char letter in WordArray)
             {
                 copycurrentword += "*";
@@ -252,7 +248,7 @@ namespace Hangman
             Player.WordGuess2 = WordGuessArray;
 
 
-
+            //Post correct number of asterisks to view screen
             FindViewById<TextView>(Resource.Id.txtGuesses).Text = new string(Player.WordGuess2);
         }
 
@@ -285,12 +281,13 @@ namespace Hangman
             Player.WordArrays = WordArray;
 
 
-
+            //Convert all letters to capitals.
             string WordUC = Player.Word.ToUpper();
 
 
-
+            
             if (WordUC.Contains(letter))
+            //If guess is correct
             {
                 Toast.MakeText(this, letter + " is in the word", ToastLength.Long).Show();
                 Player.rightGuesses++;
@@ -300,6 +297,7 @@ namespace Hangman
 
             }
             else
+            //If guess is incorrect
             {
                 Toast.MakeText(this, letter + " is not in the word", ToastLength.Long).Show();
                 Player.wrongGuesses++;
@@ -328,11 +326,11 @@ namespace Hangman
             //Toast.MakeText(this, myClass.letters.ToString(), ToastLength.Long).Show();
 
 
-
+            //Add updated word to screen
             FindViewById<TextView>(Resource.Id.txtGuesses).Text = new string(Player.WordGuess2);
 
 
-            //if (myClass.rightGuesses == myClass.letters )
+            //If player has guessed every letter in the word
             if (Player.letters == 0)
             {
 
@@ -340,30 +338,26 @@ namespace Hangman
                 Toast.MakeText(this, Player.Word, ToastLength.Long).Show();
                 Player.Won++;
                 Player.rightGuesses++;
-                var mainActivity = new Intent(this, typeof(MainActivity));
-
-
-                //run the inent and start the other screen passing over the data
-                StartActivity(mainActivity);
+                MainScreen();
             }
 
+            //Cycles through wrong guesses until the player loses changing the resulting hangman image to a different image per guess.
 
+            //final wrong guess
             if (Player.wrongGuesses >= 6)
                 {
-                    //var DeadActivity = new Intent(this, typeof(DeadActivity));
-                    //StartActivity(DeadActivity);
+                    
                     GamePic.SetImageResource(Resource.Drawable.Hangman1);
                     Toast.MakeText(this, "DEAD!", ToastLength.Long).Show();
                     Toast.MakeText(this, Player.Word, ToastLength.Long).Show();
                     Player.rightGuesses++;
                     Player.Lost++;
-                    var mainActivity = new Intent(this, typeof(MainActivity));
+                    MainScreen();
 
 
-                    //run the inent and start the other screen passing over the data
-                    StartActivity(mainActivity);
                 }
           
+            //other wrong guesses
             else if (Player.wrongGuesses == 5)
             {
                 GamePic.SetImageResource(Resource.Drawable.Hangman2);
@@ -392,7 +386,12 @@ namespace Hangman
             }
 
 
-
+        private void MainScreen()
+        {
+            //Return to main screen
+            var mainActivity = new Intent(this, typeof(MainActivity));
+            StartActivity(mainActivity);
+        }
 
 
 
