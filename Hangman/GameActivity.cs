@@ -214,7 +214,7 @@ namespace Hangman
             Player.Word = WordList[RndNumber];
 
             //Uncomment line below for cheat mode
-            Toast.MakeText(this, Player.Word, ToastLength.Long).Show();
+            //Toast.MakeText(this, Player.Word, ToastLength.Long).Show();
 
 
             //FindViewById<TextView>(Resource.Id.txtWord).Text = Word;
